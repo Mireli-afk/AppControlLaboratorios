@@ -190,3 +190,25 @@ body {
 .Btn:active {
     transform: translate(2px,2px);
 }
+
+
+/*BARRA DE NAVEGACIÓN*/
+.custom-navbar {
+    background: linear-gradient(to right, #00c6ff, #0072ff); /* Degradado de azul claro a oscuro */
+    border-radius: 50px; /* Bordes circulares */
+    padding: 10px;
+}
+
+    .custom-navbar .nav-link {
+        color: white !important; /* Asegura que los enlaces sean blancos sobre el degradado */
+    }
+
+    .custom-navbar .navbar-brand {
+        font-weight: bold;
+        color: white !important;
+    }
+
+    .custom-navbar .navbar-toggler {
+        background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente para el botón de menú */
+        border-radius: 50px; /* Botón de menú también circular */
+    }
