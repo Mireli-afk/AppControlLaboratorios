@@ -4,5 +4,21 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body>
-    <h1>¡ Bienvenido @Model.Nombre @Model.Apellidos ! </h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class ="col-md-6 text-center">
+                <!-- Encabezado con el nombre del usuario -->
+                <h1>¡ Bienvenido(a) @Model.Nombre @Model.Apellidos ! </h1>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <!-- Botón con estilo personalizado -->
+                <button class="custom-button" onclick="window.location.href='/Horarios/Create';">
+                    Crear horario
+                </button>
+            </div>
+
+        </div>
+    </div>
 </body>
