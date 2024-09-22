@@ -1,6 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Hola Admin</h1>
+﻿@model AppControlLaboratorios.Models.Usuario
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <!-- Encabezado con el nombre del usuario -->
+                <h1>¡Bienvenido(a) @Model.Nombre @Model.Apellidos! </h1>
+            </div>
+        </div>
+    </div>
+</body>
