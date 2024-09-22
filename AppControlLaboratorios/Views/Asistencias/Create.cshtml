@@ -19,26 +19,34 @@
             </div>
             <div class="form-group">
                 <label asp-for="UsuarioId" class="control-label"></label>
-                <select asp-for="UsuarioId" class ="form-control" asp-items="ViewBag.UsuarioId"></select>
+                <input asp-for="UsuarioId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Usuario.Nombre" class="control-label"></label>
+                <input asp-for="Usuario.Nombre" class="form-control" readonly />
             </div>
             <div class="form-group">
                 <label asp-for="MaquinaId" class="control-label"></label>
-                <select asp-for="MaquinaId" class ="form-control" asp-items="ViewBag.MaquinaId"></select>
+                <input asp-for="MaquinaId" class="form-control" readonly />
             </div>
             <div class="form-group">
+                <label asp-for="Maquina.NumSerie" class="control-label"></label>
+                <input asp-for="Maquina.NumSerie" class="form-control" readonly />
+            </div>
+            
+            <div class="form-group">
                 <label asp-for="HorarioId" class="control-label"></label>
-                <select asp-for="HorarioId" class ="form-control" asp-items="ViewBag.HorarioId"></select>
+                <select asp-for="HorarioId" class="form-control" asp-items="ViewBag.HorarioId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

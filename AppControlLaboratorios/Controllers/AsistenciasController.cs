@@ -48,12 +48,22 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: Asistencias/Create
-        public IActionResult Create()
+        public IActionResult Create(int usuarioId, int maquinaId)
         {
             ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id");
-            ViewData["MaquinaId"] = new SelectList(_context.Maquinas, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
-            return View();
+            var usuario = _context.Usuarios.Find(usuarioId);
+            var maquina = _context.Maquinas.Find(maquinaId);
+            var asistencia = new Asistencia
+            {
+                Usuario = usuario,
+                Maquina = maquina,
+                UsuarioId = usuarioId,
+                MaquinaId = maquinaId
+
+
+            };
+
+            return View(asistencia);
         }
 
         // POST: Asistencias/Create
@@ -67,11 +77,9 @@ namespace AppControlLaboratorios.Controllers
             {
                 _context.Add(asistencia);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Finalizar));
             }
             ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id", asistencia.HorarioId);
-            ViewData["MaquinaId"] = new SelectList(_context.Maquinas, "Id", "Id", asistencia.MaquinaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", asistencia.UsuarioId);
             return View(asistencia);
         }
 
@@ -124,7 +132,7 @@ namespace AppControlLaboratorios.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Finalizar));
             }
             ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id", asistencia.HorarioId);
             ViewData["MaquinaId"] = new SelectList(_context.Maquinas, "Id", "Id", asistencia.MaquinaId);
@@ -165,12 +173,35 @@ namespace AppControlLaboratorios.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Finalizar));
         }
 
         private bool AsistenciaExists(int id)
         {
             return _context.Asistencias.Any(e => e.Id == id);
+        }
+        public IActionResult SeleccionLab(int id, int idlab)
+        {
+
+            var maquinas = _context.Maquinas.Where(m => m.LaboratorioId == idlab).ToList(); // Cargar máquinas del laboratorio
+            if (!maquinas.Any())
+            {
+                // Manejo de error o mensaje
+                ViewBag.Mensaje = "No hay máquinas disponibles en este laboratorio.";
+            }
+            var usuario = _context.Usuarios.Find(id);
+            var asistencia = new Asistencia
+            {
+                UsuarioId = id,
+                Usuario = usuario
+            };
+            ViewBag.LaboratorioId = idlab;
+            ViewBag.Maquinas = maquinas; // Pasar la lista de máquinas para que tambien vaya a la vista
+            return View(asistencia);
+        }
+        public IActionResult Finalizar()
+        {
+            return View();
         }
     }
 }
