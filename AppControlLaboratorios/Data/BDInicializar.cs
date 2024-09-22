@@ -31,7 +31,7 @@ namespace AppControlLaboratorios.Data
                         Nombre = "Juan",
                         Apellidos = "Pérez",
                         Correo = "juan.perez@ejemplo.com",
-                        Contrasena = "12345", 
+                        Contrasena = "12345",
                         RolId = contexto.Roles.First(r => r.Nombre == "Estudiante").Id
                     },
                     new Usuario
@@ -81,6 +81,37 @@ namespace AppControlLaboratorios.Data
                     new Curso {CursoNombre = "Fundamentos de los sistemas de información" },
                 };
                 contexto.Cursos.AddRange(cursos);
+                contexto.SaveChanges();
+            }
+            if (!contexto.Maquinas.Any())
+            {
+                var maquinas = new List<Maquina>();
+
+                // Inicializar máquinas para el Laboratorio 1 (35 máquinas)
+                for (int i = 1; i <= 35; i++)
+                {
+                    maquinas.Add(new Maquina { NumSerie = $"NumSerie{i}", LaboratorioId = contexto.Laboratorios.First(l => l.Id == 1).Id });
+                }
+
+                // Inicializar máquinas para el Laboratorio 2 (32 máquinas)
+                for (int i = 1; i <= 32; i++)
+                {
+                    maquinas.Add(new Maquina { NumSerie = $"NumSerie{i}", LaboratorioId = contexto.Laboratorios.First(l => l.Id == 2).Id });
+                }
+
+                // Inicializar máquinas para el Laboratorio 3 (35 máquinas)
+                for (int i = 1; i <= 35; i++)
+                {
+                    maquinas.Add(new Maquina { NumSerie = $"NumSerie{i}", LaboratorioId = contexto.Laboratorios.First(l => l.Id == 3).Id });
+                }
+
+                // Inicializar máquinas para el Laboratorio 4 (24 máquinas)
+                for (int i = 1; i <= 24; i++)
+                {
+                    maquinas.Add(new Maquina { NumSerie = $"NumSerie{i}", LaboratorioId = contexto.Laboratorios.First(l => l.Id == 4).Id });
+                }
+
+                contexto.Maquinas.AddRange(maquinas);
                 contexto.SaveChanges();
             }
         }
