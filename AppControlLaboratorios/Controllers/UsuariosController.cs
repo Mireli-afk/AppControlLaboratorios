@@ -19,6 +19,9 @@ namespace AppControlLaboratorios.Controllers
             _context = context;
         }
 
+        //Validaciones
+        public bool IsCreatingUser { get; set; }
+
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
@@ -48,6 +51,7 @@ namespace AppControlLaboratorios.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
+            IsCreatingUser = true;
             ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id");
             return View();
         }
@@ -59,6 +63,7 @@ namespace AppControlLaboratorios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Apellidos,Correo,Contrasena,RolId")] Usuario usuario)
         {
+            IsCreatingUser = false;
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
@@ -168,6 +173,7 @@ namespace AppControlLaboratorios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Usuario usuario)
         {
+            IsCreatingUser = false;
             if (ModelState.IsValid)
             {
                 // Se busca el usuario en la base de datos por correo y contraseña
