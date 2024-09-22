@@ -114,6 +114,52 @@ namespace AppControlLaboratorios.Data
                 contexto.Maquinas.AddRange(maquinas);
                 contexto.SaveChanges();
             }
+            if (!contexto.Horarios.Any())
+            {
+                var horarios = new List<Horario>
+        {
+            new Horario
+            {
+                Fecha = new DateTime(2024, 10, 1),
+                HoraIni = "16:00",
+                HoraFin = "18:00",
+                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id, // Usar el docente
+                LaboratorioId = contexto.Laboratorios.First(l => l.Id==1).Id,
+                CursoId = contexto.Cursos.First(c => c.Id==1).Id
+            },
+            new Horario
+            {
+                Fecha = new DateTime(2024, 10, 2),
+                HoraIni = "11:00",
+                HoraFin = "13:00",
+                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
+                LaboratorioId = contexto.Laboratorios.First(l => l.Id==2).Id,
+                CursoId = contexto.Cursos.First(c => c.Id==2).Id
+            },
+            new Horario
+            {
+                Fecha = new DateTime(2024, 10, 3),
+                HoraIni = "07:00",
+                HoraFin = "10:00",
+                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
+                LaboratorioId = contexto.Laboratorios.First(l => l.Id==3).Id,
+                CursoId = contexto.Cursos.First(c => c.Id==3).Id
+            },
+            new Horario
+            {
+                Fecha = new DateTime(2024, 10, 4),
+                HoraIni = "10:00",
+                HoraFin = "13:00",
+                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
+                LaboratorioId = contexto.Laboratorios.First(l => l.Id==4).Id,
+                CursoId = contexto.Cursos.First(c => c.Id==4).Id
+            }
+        };
+
+                contexto.Horarios.AddRange(horarios);
+                contexto.SaveChanges();
+            }
         }
     }
+    
 }
