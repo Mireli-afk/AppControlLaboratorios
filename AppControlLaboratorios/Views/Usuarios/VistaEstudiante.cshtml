@@ -9,32 +9,41 @@
         </a>
     </div>
 </nav>
-<div class="container text-center mt-5">
-    <h1 class="mb-4">¡Bienvenido @Model.Nombre!</h1>
 
-    <p class="lead mb-4">¿En qué laboratorio te encuentras?</p>
+<body class="bodyLaboratiorio">
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">¡Bienvenido @Model.Nombre!</h1>
 
-    <div class="row justify-content-center">
-        <div class="col-6 col-md-3 mb-3">
-            @* <a asp-controller="Asistencias" asp-action="Lab01" class="btn btn-primary btn-block w-100">Laboratorio 01</a> *@
+        <p class="lead mb-4">¿En qué laboratorio te encuentras?</p>
 
-            <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="1" class="btn btn-primary btn-block w-100">Laboratorio 01</a>
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-3 mb-3">
+                @* <a asp-controller="Asistencias" asp-action="Lab01" class="btn btn-primary btn-block w-100">Laboratorio 01</a> *@
+
+                <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="1" class="btn btn-primary btn-block w-100">Laboratorio 01</a>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+                <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="2" class="btn btn-primary btn-block w-100">Laboratorio 02</a>
+            </div>
         </div>
-        <div class="col-6 col-md-3 mb-3">
-            <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="2" class="btn btn-primary btn-block w-100">Laboratorio 02</a>
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-3 mb-3">
+                <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="3" class="btn btn-primary btn-block w-100">Laboratorio 03</a>
+            </div>
+            <div class="col-6 col-md-3 mb-3">
+                <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="4" class="btn btn-primary btn-block w-100">Laboratorio 04</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-3 mb-3">
+                <a asp-action="Login" class="btn btn-danger btn-block w-100">Cerrar Sesión</a>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-6 col-md-3 mb-3">
-            <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="3" class="btn btn-primary btn-block w-100">Laboratorio 03</a>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-            <a asp-controller="Asistencias" asp-action="SeleccionLab" asp-route-id="@Model.Id" asp-route-idlab="4" class="btn btn-primary btn-block w-100">Laboratorio 04</a>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-6 col-md-3 mb-3">
-            <a asp-action="Login" class="btn btn-danger btn-block w-100">Cerrar Sesión</a>
-        </div>
-    </div>
-</div>
+</body>
+
+<style>
+    .bodyLaboratiorio {
+        background-image: url('~/wwwroot/img/laboratorio.jpeg')
+    }
+</style>   
