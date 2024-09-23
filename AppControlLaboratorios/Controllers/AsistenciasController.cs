@@ -59,25 +59,24 @@ namespace AppControlLaboratorios.Controllers
                 Maquina = maquina,
                 UsuarioId = usuarioId,
                 MaquinaId = maquinaId
-
-
             };
 
             return View(asistencia);
         }
+
 
         // POST: Asistencias/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Observaciones,UsuarioId,MaquinaId,HorarioId")] Asistencia asistencia)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,Observaciones,UsuarioId,MaquinaId,HorarioId")] Asistencia asistencia)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(asistencia);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Finalizar));
+                return RedirectToAction(nameof(Index));
             }
             ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id", asistencia.HorarioId);
             return View(asistencia);
@@ -107,7 +106,7 @@ namespace AppControlLaboratorios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Observaciones,UsuarioId,MaquinaId,HorarioId")] Asistencia asistencia)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,Observaciones,UsuarioId,MaquinaId,HorarioId")] Asistencia asistencia)
         {
             if (id != asistencia.Id)
             {
@@ -132,7 +131,7 @@ namespace AppControlLaboratorios.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Finalizar));
+                return RedirectToAction(nameof(Index));
             }
             ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id", asistencia.HorarioId);
             ViewData["MaquinaId"] = new SelectList(_context.Maquinas, "Id", "Id", asistencia.MaquinaId);
@@ -180,6 +179,8 @@ namespace AppControlLaboratorios.Controllers
         {
             return _context.Asistencias.Any(e => e.Id == id);
         }
+
+        //Selecionar laboratorios
         public IActionResult SeleccionLab(int id, int idlab)
         {
 
@@ -203,5 +204,6 @@ namespace AppControlLaboratorios.Controllers
         {
             return View();
         }
+
     }
 }

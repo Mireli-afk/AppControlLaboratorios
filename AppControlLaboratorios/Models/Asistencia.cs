@@ -3,6 +3,7 @@
     public class Asistencia
     {
         public int Id { get; set; }
+        public DateTime Fecha { get; set; }
         public string Observaciones { get; set; }
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }

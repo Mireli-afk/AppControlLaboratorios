@@ -13,6 +13,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="input-group-field" type="date" style="width: 100%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Observaciones" class="control-label"></label>
                 <input asp-for="Observaciones" class="form-control" />
                 <span asp-validation-for="Observaciones" class="text-danger"></span>
@@ -33,20 +39,23 @@
                 <label asp-for="Maquina.NumSerie" class="control-label"></label>
                 <input asp-for="Maquina.NumSerie" class="form-control" readonly />
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="HorarioId" class="control-label"></label>
                 <select asp-for="HorarioId" class="form-control" asp-items="ViewBag.HorarioId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
-                
+
             </div>
         </form>
     </div>
 </div>
 
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

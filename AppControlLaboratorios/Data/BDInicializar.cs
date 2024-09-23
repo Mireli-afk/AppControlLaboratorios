@@ -36,10 +36,26 @@ namespace AppControlLaboratorios.Data
                     },
                     new Usuario
                     {
+                        Nombre = "José",
+                        Apellidos = "Gonzales",
+                        Correo = "jose.gonzales@ejemplo.com",
+                        Contrasena = "67891",
+                        RolId = contexto.Roles.First(r => r.Nombre == "Estudiante").Id
+                    },
+                    new Usuario
+                    {
                         Nombre = "Ana",
                         Apellidos = "García",
                         Correo = "ana.garcia@ejemplo.com",
                         Contrasena = "67890", // Contraseña en texto plano
+                        RolId = contexto.Roles.First(r => r.Nombre == "Docente").Id
+                    },
+                     new Usuario
+                    {
+                        Nombre = "Margarita",
+                        Apellidos = "Flor",
+                        Correo = "margarita.flor@ejemplo.com",
+                        Contrasena = "20103", // Contraseña en texto plano
                         RolId = contexto.Roles.First(r => r.Nombre == "Docente").Id
                     },
                     new Usuario
@@ -120,17 +136,15 @@ namespace AppControlLaboratorios.Data
         {
             new Horario
             {
-                Fecha = new DateTime(2024, 10, 1),
-                HoraIni = "16:00",
-                HoraFin = "18:00",
+                HoraIni = "07:00",
+                HoraFin = "10:00",
                 UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id, // Usar el docente
                 LaboratorioId = contexto.Laboratorios.First(l => l.Id==1).Id,
                 CursoId = contexto.Cursos.First(c => c.Id==1).Id
             },
             new Horario
             {
-                Fecha = new DateTime(2024, 10, 2),
-                HoraIni = "11:00",
+                HoraIni = "10:00",
                 HoraFin = "13:00",
                 UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
                 LaboratorioId = contexto.Laboratorios.First(l => l.Id==2).Id,
@@ -138,19 +152,17 @@ namespace AppControlLaboratorios.Data
             },
             new Horario
             {
-                Fecha = new DateTime(2024, 10, 3),
-                HoraIni = "07:00",
-                HoraFin = "10:00",
-                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
+                HoraIni = "14:00",
+                HoraFin = "16:00",
+                UsuarioId = contexto.Usuarios.First(u => u.Id==1).Id,
                 LaboratorioId = contexto.Laboratorios.First(l => l.Id==3).Id,
                 CursoId = contexto.Cursos.First(c => c.Id==3).Id
             },
             new Horario
             {
-                Fecha = new DateTime(2024, 10, 4),
                 HoraIni = "10:00",
                 HoraFin = "13:00",
-                UsuarioId = contexto.Usuarios.First(u => u.Id==2).Id,
+                UsuarioId = contexto.Usuarios.First(u => u.Id==1).Id,
                 LaboratorioId = contexto.Laboratorios.First(l => l.Id==4).Id,
                 CursoId = contexto.Cursos.First(c => c.Id==4).Id
             }

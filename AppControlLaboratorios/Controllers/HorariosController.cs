@@ -61,7 +61,7 @@ namespace AppControlLaboratorios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha,HoraIni,HoraFin,UsuarioId,LaboratorioId,CursoId")] Horario horario)
+        public async Task<IActionResult> Create([Bind("Id,HoraIni,HoraFin,UsuarioId,LaboratorioId,CursoId")] Horario horario)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace AppControlLaboratorios.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fecha,HoraIni,HoraFin,UsuarioId,LaboratorioId,CursoId")] Horario horario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,HoraIni,HoraFin,UsuarioId,LaboratorioId,CursoId")] Horario horario)
         {
             if (id != horario.Id)
             {
