@@ -50,7 +50,18 @@ namespace AppControlLaboratorios.Controllers
         // GET: Asistencias/Create
         public IActionResult Create(int usuarioId, int maquinaId)
         {
-            ViewData["HorarioId"] = new SelectList(_context.Horarios, "Id", "Id");
+            //Para que el reemplazar al horarioID
+            var horarios = _context.Horarios
+                .Include(h => h.Curso)  // Asegúrate de incluir la relación con el curso
+                .Select(h => new {
+                    h.Id,
+                    DisplayText = h.Curso.CursoNombre + " (" + h.HoraIni + " - " + h.HoraFin + ")" // Formatear el texto para mostrarlo
+                })
+                .ToList();
+
+            // Generar la lista de selección con el DisplayText personalizado
+            ViewData["HorarioId"] = new SelectList(horarios, "Id", "DisplayText");
+
             var usuario = _context.Usuarios.Find(usuarioId);
             var maquina = _context.Maquinas.Find(maquinaId);
             var asistencia = new Asistencia
