@@ -20,10 +20,54 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: Asistencias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime? fecha, int? idlab, int? idhorario)
         {
-            var bDContexto = _context.Asistencias.Include(a => a.Horario).Include(a => a.Maquina).Include(a => a.Usuario);
-            return View(await bDContexto.ToListAsync());
+            // Obtener listas de laboratorios y horarios
+            var laboratorios = await _context.Laboratorios.ToListAsync();
+            var horarios = await _context.Horarios.ToListAsync();
+
+            // Crear listas select para la vista
+            ViewBag.Laboratorios = new SelectList(laboratorios, "Id", "LaboratorioNombre");
+            ViewBag.Horarios = new SelectList(horarios, "Id", "CursoId");
+            ViewBag.SelectedFecha = fecha;
+            ViewBag.SelectedLab = idlab;
+            ViewBag.SelectedHorario = idhorario;
+
+            // Crear consulta inicial para las asistencias
+            var bDContexto = _context.Asistencias
+                .Include(a => a.Horario)
+                .ThenInclude(c => c.Curso) // Relación entre Horario y Laboratorio
+                .Include(a => a.Usuario) // Incluye la relación con Usuario
+                .Include(a => a.Maquina) // Incluye la relación con Maquina
+                .AsQueryable();
+
+
+            // Filtro por Fecha
+            if (fecha.HasValue)
+            {
+                bDContexto = bDContexto.Where(a =>
+                    a.Fecha.Year == fecha.Value.Year &&
+                    a.Fecha.Month == fecha.Value.Month &&
+                    a.Fecha.Day == fecha.Value.Day);
+            }
+
+
+            // Filtro por Laboratorio
+            if (idlab.HasValue && idlab.Value != 0)
+            {
+                bDContexto = bDContexto.Where(a => a.Maquina.LaboratorioId == idlab.Value);
+            }
+
+            // Filtro por Horario (HoraIni o HoraFin)
+            if (idhorario.HasValue && idhorario.Value != 0)
+            {
+                bDContexto = bDContexto.Where(a => a.HorarioId == idhorario.Value);
+            }
+
+            // Obtener lista filtrada de asistencias
+            var asistencias = await bDContexto.ToListAsync();
+
+            return View(asistencias);
         }
 
         // GET: Asistencias/Details/5
@@ -85,6 +129,7 @@ namespace AppControlLaboratorios.Controllers
         {
             if (ModelState.IsValid)
             {
+                asistencia.Fecha = DateTime.Now;
                 _context.Add(asistencia);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
