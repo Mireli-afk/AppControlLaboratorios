@@ -33,16 +33,16 @@ body {
 .card {
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .card-header {
     background-color: #0056b3;
     color: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
     padding: 20px;
     text-align: center;
-    border-radius: 50px;
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px; 
 }
 
 .form-control {
