@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h1 style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);" class="text-white">Lista de Cursos</h1>
+
 <link rel="stylesheet" href="~/css/botones.css" />
-<h1>Index</h1>
+<link rel="stylesheet" href="~/css/agregar.css" />
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @Html.Partial("_crearNuevo")
 </p>
 <table class="table table-light table-hover">
     <thead class="table-primary">
