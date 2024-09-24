@@ -20,11 +20,16 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: Horarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int idUsuario)
         {
-            var bDContexto = _context.Horarios.Include(h => h.Curso).Include(h => h.Laboratorio).Include(h => h.Usuario);
-            return View(await bDContexto.ToListAsync());
+            var bDContexto = _context.Horarios.Include(h => h.Curso).Include(h => h.Laboratorio).Include(h => h.Usuario).AsQueryable();
+            bDContexto = bDContexto.Where(a => a.UsuarioId == idUsuario);
+
+            ViewBag.idUsuario = idUsuario;
+            var horarios = await bDContexto.ToListAsync();
+            return View(horarios);
         }
+
 
         // GET: Horarios/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -48,13 +53,19 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: Horarios/Create
-        public IActionResult Create()
+        public IActionResult Create(int idUsuario)
         {
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Id");
+
+            var horario = new Horario
+            {
+                UsuarioId = idUsuario
+            };
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "CursoNombre");
             ViewData["LaboratorioId"] = new SelectList(_context.Laboratorios, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
-            return View();
+
+            return View(horario);
         }
+
 
         // POST: Horarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -67,13 +78,14 @@ namespace AppControlLaboratorios.Controllers
             {
                 _context.Add(horario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = horario.UsuarioId });
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Id", horario.CursoId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "CursoNombre", horario.CursoId);
             ViewData["LaboratorioId"] = new SelectList(_context.Laboratorios, "Id", "Id", horario.LaboratorioId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", horario.UsuarioId);
+
             return View(horario);
         }
+
 
         // GET: Horarios/Edit/5
         public async Task<IActionResult> Edit(int? id)

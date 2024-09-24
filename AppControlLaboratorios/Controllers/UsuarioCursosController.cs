@@ -20,11 +20,18 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: UsuarioCursos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int idUsuario)
         {
-            var bDContexto = _context.UsuarioCursos.Include(u => u.Curso).Include(u => u.Usuario);
-            return View(await bDContexto.ToListAsync());
+            var bDContexto = _context.UsuarioCursos.Include(u => u.Curso).Include(u => u.Usuario).AsQueryable();
+
+
+            bDContexto = bDContexto.Where(a => a.UsuarioId == idUsuario);
+
+            ViewBag.idUsuario = idUsuario;
+            var cursos = await bDContexto.ToListAsync();
+            return View(cursos);
         }
+
 
         // GET: UsuarioCursos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -47,12 +54,19 @@ namespace AppControlLaboratorios.Controllers
         }
 
         // GET: UsuarioCursos/Create
-        public IActionResult Create()
+        public IActionResult Create(int idUsuario)
         {
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Id");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
-            return View();
+            var usuarioCurso = new UsuarioCurso
+            {
+                UsuarioId = idUsuario
+            };
+
+
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "CursoNombre");
+
+            return View(usuarioCurso);
         }
+
 
         // POST: UsuarioCursos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -63,14 +77,16 @@ namespace AppControlLaboratorios.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _context.Add(usuarioCurso);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { idUsuario = usuarioCurso.UsuarioId });
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Id", usuarioCurso.CursoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", usuarioCurso.UsuarioId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "CursoNombre", usuarioCurso.CursoId);
+            //ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", usuarioCurso.UsuarioId);
             return View(usuarioCurso);
         }
+
 
         // GET: UsuarioCursos/Edit/5
         public async Task<IActionResult> Edit(int? id)

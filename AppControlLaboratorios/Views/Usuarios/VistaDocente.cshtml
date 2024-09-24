@@ -6,7 +6,7 @@
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class ="col-md-6 text-center">
+            <div class="col-md-6 text-center">
                 <!-- Encabezado con el nombre del usuario -->
                 <h1>¡ Bienvenido(a) @Model.Nombre @Model.Apellidos ! </h1>
             </div>
@@ -14,12 +14,13 @@
             <!-- Botones de acción -->
             <div class="d-flex flex-column justify-content-center align-items-center mt-3">
                 <!-- Botón con estilo personalizado -->
-                <button class="boton-vista text-light mb-2 margin:10px" onclick="window.location.href='/UsuarioCursos/Index';">
-                    Mis cursos 
-                </button>
-                <button class="boton-vista text-light mb-2 margin:10px" onclick="window.location.href='/Horarios/Index';">
+
+                <a asp-controller="UsuarioCursos" class="boton-vista text-light mb-2 margin:10px" asp-action="Index" asp-route-idUsuario="@Model.Id">
+                    Lista cursos
+                </a>
+                <a asp-controller="Horarios" class="boton-vista text-light mb-2 margin:10px" asp-action="Index" asp-route-idUsuario="@Model.Id">
                     Lista Horarios
-                </button>
+                </a>
             </div>
         </div>
     </div>

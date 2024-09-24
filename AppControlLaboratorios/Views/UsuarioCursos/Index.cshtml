@@ -7,8 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-idUsuario="@ViewBag.idUsuario">Crear</a>
 </p>
+
 <table class="table table-light table-hover">
     <thead class="table-primary">
         <tr>
@@ -16,26 +17,46 @@
                 @Html.DisplayNameFor(model => model.Usuario)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Usuario.Nombre)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Curso.CursoNombre)
             </th>
             <th></th>
         </tr>
+
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Curso.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso.CursoNombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
     </tbody>
 </table>
+
+<div>
+    <a asp-controller="Usuarios" asp-action="VistaDocente" asp-route-idusuario="@ViewBag.idUsuario">Regresar</a>
+
+</div>

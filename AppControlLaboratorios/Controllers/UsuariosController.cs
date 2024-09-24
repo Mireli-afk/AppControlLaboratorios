@@ -29,6 +29,7 @@ namespace AppControlLaboratorios.Controllers
             return View(await bDContexto.ToListAsync());
         }
 
+
         // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -55,6 +56,7 @@ namespace AppControlLaboratorios.Controllers
             ViewData["RolId"] = new SelectList(_context.Roles, "Id", "Id");
             return View();
         }
+
 
         // POST: Usuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -215,6 +217,20 @@ namespace AppControlLaboratorios.Controllers
 
             return View(usuario);
         }
+        public IActionResult VistaDocente(int idUsuario)
+        {
+            // Obtener el usuario desde la base de datos
+            var usuario = _context.Usuarios.Find(idUsuario);
+
+            // Verificar si el usuario fue encontrado
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+
         private bool UsuarioExists(int id)
         {
             return _context.Usuarios.Any(e => e.Id == id);

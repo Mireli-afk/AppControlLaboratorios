@@ -6,9 +6,7 @@
 <link rel="stylesheet" href="~/css/botones.css" />
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table table-light table-hover">
     <thead class="table-primary">
         <tr>
@@ -21,9 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Usuario)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Laboratorio)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Curso)
             </th>
@@ -31,27 +27,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraIni)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Laboratorio.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Curso.Id)
-            </td>
-            <td>
-                @Html.Partial("_botonesEDE", item.Id)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso.Id)
+                </td>
+                <td>
+                    @Html.Partial("_botonesEDE", item.Id)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div>
+    <a asp-controller="Usuarios" asp-action="VistaDocente" asp-route-idusuario="@ViewBag.idUsuario">Regresar</a>
+
+</div>
+
