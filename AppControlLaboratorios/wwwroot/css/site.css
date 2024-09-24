@@ -21,6 +21,45 @@ body {
   margin-bottom: 60px;
 }
 
+.body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f8;
+}
+
+.container-fluid {
+    padding-top: 5px;
+}
+
+.card {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background-color: #0056b3;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.form-control {
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.btn {
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.btn-success {
+    background-color: #0056b3;
+    border: none;
+}
+
 /*BOTON para INGRESAR EN EL LOGIN*/
 /* From Uiverse.io by alexmaracinaru */
 .cta {
