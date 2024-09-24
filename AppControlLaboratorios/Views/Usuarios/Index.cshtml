@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);" class="text-white">Lista de Cursos</h1>
 <link rel="stylesheet" href="~/css/botones.css" />
 
 <p>
@@ -48,7 +48,7 @@
                 @Html.DisplayFor(modelItem => item.Contrasena)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rol.Id)
+                @Html.DisplayFor(modelItem => item.Rol.Nombre)
             </td>
             <td>
                 @Html.Partial("_botonesEDE", item.Id)                   

@@ -4,106 +4,108 @@
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/botones.css" />
-<h1>Lista de Asistencias</h1>
+<h1 style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);" class="text-white">Lista de Asistencias</h1>
 
-<button class="btn btn-success" onclick="window.print()">Imprimir</button>
+<button class="btn btn-success mt-3" onclick="window.print()">Imprimir</button>
 
-<div class="col-6 text-end">
-    <form>
-        <div class="input-group">
-            @* <input value="@ViewBag.TerminoFecha" type="date" class="form-control" placeholder="Fecha"  aria-label="Laboratorio" /> *@
-            <input name="fecha" value="@ViewBag.SelectedFecha?.ToString("yyyy-MM-dd")" type="date" class="form-control" placeholder="Fecha" aria-label="Fecha" />
-            <select name="idlab" class="form-control" aria-label="Laboratorio">
-                <option value="">Seleccione un laboratorio</option>
-                @foreach (var laboratorio in ViewBag.Laboratorios)
-                {
-                    <option value="@laboratorio.Value">@laboratorio.Text</option>
-                }
-            </select>
-            <select name="idhorario" class="form-control" aria-label="Horario">
-                <option value="">Seleccione un horario</option>
-                @foreach (var horario in ViewBag.Horarios)
-                {
-                    <option value="@horario.Value">@horario.Text</option>
-                }
-            </select>
-            @* <a asp-action="Index2"  asp-route-idLab="@ViewBag.SelectedLab" asp-route-idhorario="@ViewBag.SelectedHorario" class="btn btn-outline-primary">Busqueda</a> *@
+<div class="row section2-details py-5 d-flex justify-content-center align-items-center">
+    <div class="col-6 text-end mt-3">
+        <form>
+            <div class="input-group">
+                @* <input value="@ViewBag.TerminoFecha" type="date" class="form-control" placeholder="Fecha"  aria-label="Laboratorio" /> *@
+                <input name="fecha" value="@ViewBag.SelectedFecha?.ToString("yyyy-MM-dd")" type="date" class="form-control" placeholder="Fecha" aria-label="Fecha" />
+                <select name="idlab" class="form-control" aria-label="Laboratorio">
+                    <option value="">Seleccione un laboratorio</option>
+                    @foreach (var laboratorio in ViewBag.Laboratorios)
+                    {
+                        <option value="@laboratorio.Value">@laboratorio.Text</option>
+                    }
+                </select>
+                <select name="idhorario" class="form-control" aria-label="Horario">
+                    <option value="">Seleccione un horario</option>
+                    @foreach (var horario in ViewBag.Horarios)
+                    {
+                        <option value="@horario.Value">@horario.Text</option>
+                    }
+                </select>
 
+                <button name="botonBusqueda" id="botonBusqueda" type="submit" class="btn btn-success">Buscar</button>
+                <a asp-action="Index" class="btn btn-danger">Limpiar</a>
 
-            <button name="botonBusqueda" id="botonBusqueda" type="submit" class="btn btn-outline-primary"> Buscar</button>
-            <a asp-action="Index" class="btn btn-outline-secondary">Limpiar</a>
-
-        </div>
-    </form>
-</div>
-<table class="table table-light table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Maquina)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Maquina.NumSerie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Horario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Horario.Curso.CursoNombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Maquina.Laboratorio)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+            </div>
+        </form>
+    </div>
+    <table class="table table-light table-hover mt-3">
+        <thead class="table-dark">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Observaciones)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maquina.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maquina.NumSerie)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Horario.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Horario.Curso.CursoNombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maquina.LaboratorioId)
-                </td>
-                <td>
-                    @Html.Partial("_botonesEDE", item.Id)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Maquina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Maquina.NumSerie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Horario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Horario.Curso.CursoNombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Maquina.Laboratorio)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observaciones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maquina.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maquina.NumSerie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario.Curso.CursoNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maquina.LaboratorioId)
+                    </td>
+                    <td>
+                        @Html.Partial("_botonesEDE", item.Id)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
