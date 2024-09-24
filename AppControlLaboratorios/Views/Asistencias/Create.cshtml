@@ -6,54 +6,48 @@
 
 <h1>Create</h1>
 
-<h4>Asistencia</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-
-            <div class="form-group">
-                <label asp-for="Observaciones" class="control-label"></label>
-                <input asp-for="Observaciones" class="form-control" />
-                <span asp-validation-for="Observaciones" class="text-danger"></span>
+<body class="body">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Registrar Asistencia</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                            <div class="form-group mb-2">
+                                <input asp-for="Observaciones" class="form-control" placeholder="Observaciones"/>
+                                <span asp-validation-for="Observaciones" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input asp-for="UsuarioId" class="form-control" readonly />
+                            </div>
+                            <div class="form-group mb-2">
+                                <input asp-for="Usuario.Nombre" class="form-control" readonly />
+                            </div>
+                            <div class="form-group mb-2">
+                                <input asp-for="MaquinaId" class="form-control" readonly />
+                            </div>
+                            <div class="form-group mb-2">
+                                <input asp-for="Maquina.NumSerie" class="form-control" readonly />
+                            </div>
+                            <div class="form-group mb-2">
+                                <select asp-for="HorarioId" class="form-control" asp-items="ViewBag.HorarioId"></select>
+                                <span asp-validation-for="HorarioId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Crear</button>
+                                <a asp-action="Index" class="btn btn-secondary btn-lg btn-block mt-2">Regresar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UsuarioId" class="control-label"></label>
-                <input asp-for="UsuarioId" class="form-control" readonly />
-            </div>
-            <div class="form-group">
-                <label asp-for="Usuario.Nombre" class="control-label"></label>
-                <input asp-for="Usuario.Nombre" class="form-control" readonly />
-            </div>
-            <div class="form-group">
-                <label asp-for="MaquinaId" class="control-label"></label>
-                <input asp-for="MaquinaId" class="form-control" readonly />
-            </div>
-            <div class="form-group">
-                <label asp-for="Maquina.NumSerie" class="control-label"></label>
-                <input asp-for="Maquina.NumSerie" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="HorarioId" class="control-label"></label>
-                <select asp-for="HorarioId" class="form-control" asp-items="ViewBag.HorarioId"></select>
-                <span asp-validation-for="HorarioId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-
-<div>
-    <a asp-controller="Usuarios" asp-action="VistaEstudiante" asp-route-idusuario="@Model.UsuarioId">Regresar</a>
-
-</div>
+</body>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
