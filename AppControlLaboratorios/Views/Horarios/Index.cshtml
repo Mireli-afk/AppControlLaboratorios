@@ -37,10 +37,10 @@
                     @Html.DisplayFor(modelItem => item.HoraFin)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Usuario.Id)
+                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Curso.Id)
+                    @Html.DisplayFor(modelItem => item.Curso.CursoNombre)
                 </td>
                 <td>
                     @Html.Partial("_botonesEDE", item.Id)
@@ -53,4 +53,3 @@
     <a asp-controller="Usuarios" asp-action="VistaDocente" asp-route-idusuario="@ViewBag.idUsuario">Regresar</a>
 
 </div>
-
