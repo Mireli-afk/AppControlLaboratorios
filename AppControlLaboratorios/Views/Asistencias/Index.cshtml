@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<link rel="stylesheet" href="~/css/botones.css" />
 <h1>Index</h1>
 
 <div class="col-6 text-end">
@@ -34,8 +34,8 @@
         </div>
     </form>
 </div>
-<table class="table">
-    <thead>
+<table class="table table-light table-hover">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
@@ -99,9 +99,7 @@
                     @Html.DisplayFor(modelItem => item.Maquina.LaboratorioId)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.Partial("_botonesEDE", item.Id)
                 </td>
             </tr>
         }
