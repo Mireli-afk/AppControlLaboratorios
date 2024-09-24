@@ -236,3 +236,29 @@ body.xd {
     background-repeat: no-repeat;
     height: 100%;
 }
+
+/* Estilos para las secciones de detalles con fondo difuminado */
+.section-details {
+    position: relative;
+    border-bottom: 1px solid #ddd; /* Línea inferior suave */
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de difuminado */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Espaciado inferior entre secciones */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+    /* Estilo de las imágenes dentro de las secciones */
+    .section-details img {
+        max-width: 100%; /* La imagen ocupa el 100% del contenedor */
+        height: auto; /* Mantiene la proporción original de la imagen */
+        border-radius: 10px; /* Bordes redondeados */
+    }
+
+    /* Estilo del texto en las descripciones */
+    .section-details p {
+        font-size: 1.2rem; /* Tamaño de fuente del texto */
+        line-height: 1.5; /* Altura de línea para legibilidad */
+        color: #333; /* Color de texto oscuro para buen contraste */
+    }
