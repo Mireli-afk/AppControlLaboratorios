@@ -202,7 +202,19 @@ namespace AppControlLaboratorios.Controllers
             }
             return View(usuario); // Si algo falla, vuelve a mostrar la vista de login
         }
+        public IActionResult VistaEstudiante(int idUsuario)
+        {
+            // Obtener el usuario desde la base de datos
+            var usuario = _context.Usuarios.Find(idUsuario);
 
+            // Verificar si el usuario fue encontrado
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
         private bool UsuarioExists(int id)
         {
             return _context.Usuarios.Any(e => e.Id == id);
