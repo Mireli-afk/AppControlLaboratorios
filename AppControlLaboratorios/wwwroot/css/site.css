@@ -301,3 +301,145 @@ body.xd {
         line-height: 1.5; /* Altura de línea para legibilidad */
         color: #333; /* Color de texto oscuro para buen contraste */
     }
+
+/* Estilos2 para las secciones de detalles con fondo difuminado */
+.section2-details {
+    position: relative;
+    border-bottom: 1px solid #ddd; /* Línea inferior suave */
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+    backdrop-filter: blur(15px); /* Efecto de difuminado */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Espaciado inferior entre secciones */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+    /* Estilo de las imágenes dentro de las secciones */
+    .section2-details img {
+        max-width: 100%; /* La imagen ocupa el 100% del contenedor */
+        height: auto; /* Mantiene la proporción original de la imagen */
+        border-radius: 10px; /* Bordes redondeados */
+    }
+
+    /* Estilo del texto en las descripciones */
+    .section2-details p {
+        font-size: 1.2rem; /* Tamaño de fuente del texto */
+        line-height: 1.5; /* Altura de línea para legibilidad */
+        color: #333; /* Color de texto oscuro para buen contraste */
+    }
+
+
+/*SALIR*/
+/* From Uiverse.io by vinodjangid07 */
+.salir {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .sign svg {
+        width: 17px;
+    }
+
+        .sign svg path {
+            fill: white;
+        }
+
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.salir:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+    .salir:hover .sign {
+        width: 30%;
+        transition-duration: .3s;
+        padding-left: 20px;
+    }
+
+    /* hover effect button's text */
+    .salir:hover .text {
+        opacity: 1;
+        width: 70%;
+        transition-duration: .3s;
+        padding-right: 10px;
+    }
+
+/* button click effect */
+.salir:active {
+    transform: translate(2px, 2px);
+}
+
+/*MAQUINA*/
+/* From Uiverse.io by vikiWayne */
+.maquina {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #2c9caf;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #2c9caf;
+}
+
+    .maquina:hover {
+        color: #ffffff;
+        transform: scale(1.1);
+        outline: 2px solid #70bdca;
+        box-shadow: 4px 5px 17px -4px #268391;
+    }
+
+    .maquina::before {
+        content: "";
+        position: absolute;
+        left: -50px;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: #2c9caf;
+        transform: skewX(45deg);
+        z-index: -1;
+        transition: width 1000ms;
+    }
+
+    .maquina:hover::before {
+        width: 250%;
+    }

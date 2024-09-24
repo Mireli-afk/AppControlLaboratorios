@@ -10,93 +10,94 @@
 
 
 <div class="container mt-5">
-    <h2>Laboratorio: @ViewBag.LaboratorioId</h2>
-    <h3>@Model.Usuario.Nombre , En que maquina estas?</h3>
-    <div class="bg-secondary border border-dark rounded mb-4 d-flex justify-content-center align-items-center" style="height: 50px;">
-        <span class="text-white">Pizarra</span>
+    <h2 class="text-white" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">Laboratorio: @ViewBag.LaboratorioId</h2>
+    <h3 class="text-white" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);">@Model.Usuario.Nombre , En que maquina estas?</h3>
+    <div class="row section2-details py-5 d-flex justify-content-center align-items-center">
+        <div class="bg-secondary border border-dark rounded mb-4 d-flex justify-content-center align-items-center" style="height: 50px;">
+            <span class="text-white">Pizarra</span>
+        </div>
+
+        <table class="table table-borderless">
+            <tbody>
+                @if (ViewBag.LaboratorioId == 1 || ViewBag.LaboratorioId == 3) // Matriz para laboratorio 1 y 3
+                {
+                    int contador = 0;
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 5; j++)
+                            {
+
+
+                                if (j % 5 == 2 || j == 2)
+                                {
+
+                                    <td>
+                                        <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-primary text-white w-100">@maquinas[contador].NumSerie</a>
+                                    </td>
+                                    <td>------</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-primary text-white w-100">@maquinas[contador].NumSerie</a>
+                                    </td>
+                                }
+                                contador++;
+
+                            }
+                        </tr>
+                    }
+                }
+
+                @if (ViewBag.LaboratorioId == 2) // Matriz para laboratorio 2
+                {
+                    int contador = 0;
+                    @for (int i = 0; i < 8; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 4; j++)
+                            {
+
+
+                                if (j % 4 == 1 || j == 1)
+                                {
+
+                                    <td>
+                                        <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-primary text-white w-100">@maquinas[contador].NumSerie</a>
+                                    </td>
+                                    <td>------</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-primary text-white w-100">@maquinas[contador].NumSerie</a>
+                                    </td>
+                                }
+                                contador++;
+                            }
+                        </tr>
+                    }
+                }
+                @if (ViewBag.LaboratorioId == 4) // Matriz para laboratorio 4
+                {
+                    int contador = 0;
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 6; j++)
+                            {
+                                <td>
+                                    <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-primary text-white w-100">@maquinas[contador].NumSerie</a>
+                                </td>
+                                contador++;
+
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
     </div>
-
-
-    <table class="table table-borderless">
-        <tbody>
-            @if (ViewBag.LaboratorioId == 1 || ViewBag.LaboratorioId == 3) // Matriz para laboratorio 1 y 3
-            {
-                int contador = 0;
-                @for (int i = 0; i < 7; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < 5; j++)
-                        {
-
-
-                            if (j % 5 == 2 || j == 2)
-                            {
-
-                                <td>
-                                    <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-outline-primary w-100">Máquina: @maquinas[contador].NumSerie</a>
-                                </td>
-                                <td>------</td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-outline-primary w-100">Máquina: @maquinas[contador].NumSerie</a>
-                                </td>
-                            }
-                            contador++;
-
-                        }
-                    </tr>
-                }
-            }
-
-            @if (ViewBag.LaboratorioId == 2) // Matriz para laboratorio 2
-            {
-                int contador = 0;
-                @for (int i = 0; i < 8; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < 4; j++)
-                        {
-
-
-                            if (j % 4 == 1 || j == 1)
-                            {
-
-                                <td>
-                                    <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-outline-primary w-100">Máquina: @maquinas[contador].NumSerie</a>
-                                </td>
-                                <td>------</td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-outline-primary w-100">Máquina: @maquinas[contador].NumSerie</a>
-                                </td>
-                            }
-                            contador++;
-                        }
-                    </tr>
-                }
-            }
-            @if (ViewBag.LaboratorioId == 4) // Matriz para laboratorio 4
-            {
-                int contador = 0;
-                @for (int i = 0; i < 4; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < 6; j++)
-                        {
-                            <td>
-                                <a asp-controller="Asistencias" asp-action="Create" asp-route-usuarioId="@Model.UsuarioId" asp-route-maquinaId="@maquinas[contador].Id" class="btn btn-outline-primary w-100">Máquina: @maquinas[contador].NumSerie</a>
-                            </td>
-                            contador++;
-
-                        }
-                    </tr>
-                }
-            }
-        </tbody>
-
-    </table>
 </div>

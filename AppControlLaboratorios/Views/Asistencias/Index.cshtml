@@ -4,7 +4,9 @@
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/botones.css" />
-<h1>Index</h1>
+<h1>Lista de Asistencias</h1>
+
+<button class="btn btn-success" onclick="window.print()">Imprimir</button>
 
 <div class="col-6 text-end">
     <form>
@@ -35,7 +37,7 @@
     </form>
 </div>
 <table class="table table-light table-hover">
-    <thead class="table-primary">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
